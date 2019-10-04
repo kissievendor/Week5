@@ -21,6 +21,11 @@ void Point::set_pt(double _x, double _y) {
 	y = _y;
 }
 
+ostream& operator << (ostream& os, Point& _pt) {
+	os << "(" << _pt.get_pt_x() << " ," << _pt.get_pt_y() << ")" << '\n';
+	return os;
+}
+
 vector<Point> original_pts;
 
 void fill_original_pts() {
@@ -57,10 +62,17 @@ void fill_original_pts() {
 	}
 }
 
+void print_original_pts(vector<Point> _pts) {
+	for (int i = 0; i < _pts.size(); i++) {
+		cout << _pts[i];
+	}
+}
+
 int main()
 try
 {
 	fill_original_pts();
+	print_original_pts(original_pts);
 }
 
 catch (runtime_error e) {
