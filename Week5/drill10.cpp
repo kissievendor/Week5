@@ -69,7 +69,7 @@ void print_original_pts(vector<Point> _pts) {
 }
 
 void output_original_pts(vector<Point> _pts) {
-    string oname = "pts.txt";
+    string oname = "mydata.txt";
     ofstream ost{ oname };
     if (!ost) error("can't open output file ", oname);
  
