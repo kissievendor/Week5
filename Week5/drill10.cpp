@@ -27,8 +27,9 @@ ostream& operator << (ostream& os, Point& _pt) {
 }
 
 vector<Point> original_pts;
+vector<Point> processed_pts;
 
-void fill_original_pts() {
+void fill_vec_pts() {
 	cout << "Enter 7 point pairs in format x, y. \n"
 		"To end your input earlier, type x " << '\n';
 	while (original_pts.size() < 7) {
@@ -79,12 +80,27 @@ void output_original_pts(vector<Point> _pts) {
     }
 }
 
+void input_original_pts(vector<Point>& _pts) {
+	string iname = "mydata.txt";
+	ifstream ist{ iname };
+	if (!ist) error("can't open input file ", iname);
+
+	double x;
+	double y;
+
+	while (ist >> x >> y) {
+		Point p(x, y);
+		_pts.push_back(p);
+	}
+}
+
 int main()
 try
 {
-	fill_original_pts();
+	fill_vec_pts();
 	print_original_pts(original_pts);
 	output_original_pts(original_pts);
+	input_original_pts(processed_pts);
 }
 
 catch (runtime_error e) {
