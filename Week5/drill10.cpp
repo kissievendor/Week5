@@ -1,5 +1,7 @@
 #include "std_lib_facilities.h"
 
+/*
+
 class Point {
 public:
 	Point(double _x, double _y);
@@ -148,3 +150,4 @@ catch (runtime_error e) {
 catch (...) {
 	cout << "Exiting" << endl;
 }
+*/
