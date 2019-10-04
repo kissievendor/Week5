@@ -30,7 +30,7 @@ vector<Point> original_pts;
 
 void fill_original_pts() {
 	cout << "Enter 7 point pairs in format x, y. \n"
-		"To end your input type x " << '\n';
+		"To end your input earlier, type x " << '\n';
 	while (original_pts.size() < 7) {
 		double x, y;
 		char comma;
@@ -68,11 +68,23 @@ void print_original_pts(vector<Point> _pts) {
 	}
 }
 
+void output_original_pts(vector<Point> _pts) {
+    string oname = "pts.txt";
+    ofstream ost{ oname };
+    if (!ost) error("can't open output file ", oname);
+ 
+    cout << "Writing file " << oname << endl;
+    for (int i = 0; i < _pts.size(); i++) {
+        ost << "(" << _pts[i].get_pt_x() << ", " << _pts[i].get_pt_y() << ")" << endl;
+    }
+}
+
 int main()
 try
 {
 	fill_original_pts();
 	print_original_pts(original_pts);
+	output_original_pts(original_pts);
 }
 
 catch (runtime_error e) {
