@@ -21,18 +21,18 @@ void Point::set_pt(double _x, double _y) {
 	y = _y;
 }
 
-ostream& operator << (ostream& os, Point& _pt) {
-	os << "(" << _pt.get_pt_x() << " ," << _pt.get_pt_y() << ")" << '\n';
+ostream& operator<<(ostream& os, Point& _pt) {
+	os << "(" << _pt.get_pt_x() << " ," << _pt.get_pt_y() << ")" << endl;
 	return os;
 }
 
 vector<Point> original_pts;
 vector<Point> processed_pts;
 
-void fill_vec_pts() {
-	cout << "Enter 7 point pairs in format x, y. \n"
-		"To end your input earlier, type x " << '\n';
-	while (original_pts.size() < 7) {
+void fill_vec_pts(vector<Point>& _pts) {
+	cout << "Enter point pairs in format x,y.\n"
+	"To end your input type x" << endl;
+	while (_pts.size() < 7) {
 		double x, y;
 		char comma;
 		char check;
@@ -47,42 +47,43 @@ void fill_vec_pts() {
 
 		if (cin >> x >> comma >> y) {
 			if (comma != ',') {
-				cout << "x and y seperated by comma, not: " << comma << '\n';
+				cout << "x and y seperated by comma, not: " << comma << endl;
 			}
 			else {
 				Point pt(x, y);
-				original_pts.push_back(pt);
+				_pts.push_back(pt);
 			}
 		}
 		else {
 			cin.clear();
 			string check1;
 			cin >> check1;
-			cout << "Invalid value input: " << check1 << '\n';
+			cout << "Invalid value input: " << check1 << endl;
 		}
 	}
 }
 
-void print_original_pts(vector<Point> _pts) {
+void print_pts(vector<Point> _pts) {
 	for (int i = 0; i < _pts.size(); i++) {
 		cout << _pts[i];
 	}
 }
 
 void output_original_pts(vector<Point> _pts) {
-    string oname = "mydata.txt";
-    ofstream ost{ oname };
-    if (!ost) error("can't open output file ", oname);
- 
-    cout << "Writing file " << oname << endl;
-    for (int i = 0; i < _pts.size(); i++) {
-        ost << "(" << _pts[i].get_pt_x() << ", " << _pts[i].get_pt_y() << ")" << endl;
-    }
+	string oname = "pts.txt";
+	ofstream ost(oname);
+	if (!ost) error("can't open output file ", oname);
+
+	cout << "Writing file " << oname << endl;
+	for (int i = 0; i < _pts.size(); i++) {
+		ost << _pts[i].get_pt_x() << " " << _pts[i].get_pt_y() << endl;
+	}
+	ost.close();
 }
 
 void input_original_pts(vector<Point>& _pts) {
-	string iname = "mydata.txt";
-	ifstream ist{ iname };
+	string iname = "pts.txt";
+	ifstream ist(iname);
 	if (!ist) error("can't open input file ", iname);
 
 	double x;
@@ -97,16 +98,24 @@ void input_original_pts(vector<Point>& _pts) {
 int main()
 try
 {
-	fill_vec_pts();
-	print_original_pts(original_pts);
+	fill_vec_pts(original_pts);
 	output_original_pts(original_pts);
 	input_original_pts(processed_pts);
-}
 
+	cout << "Original pts: " << endl;
+	print_pts(original_pts);
+
+	cout << "Processed pts: " << endl;
+	print_pts(processed_pts);
+
+	keep_window_open();
+
+}
 catch (runtime_error e) {
-	cout << e.what() << '\n';
+	cout << e.what() << endl;
+	keep_window_open();
 }
-
 catch (...) {
-	cout << "Exiting" << '\n';
+	cout << "Exiting" << endl;
+	keep_window_open();
 }
