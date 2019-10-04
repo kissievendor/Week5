@@ -26,6 +26,16 @@ ostream& operator<<(ostream& os, Point& _pt) {
 	return os;
 }
 
+bool operator!=(Point& _pt1, Point& _pt2) {
+	if (_pt1.get_pt_x() != _pt2.get_pt_x() &&
+		_pt1.get_pt_y() != _pt2.get_pt_y()) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 vector<Point> original_pts;
 vector<Point> processed_pts;
 
@@ -95,6 +105,28 @@ void input_original_pts(vector<Point>& _pts) {
 	}
 }
 
+void compare_pt_vectors(vector<Point>& _pts1, vector<Point>& _pts2) {
+	bool check;
+	if (_pts1.size() != _pts2.size()) {
+		check = false;
+	}
+
+	else {
+		for (int i = 0; i < _pts1.size(); i++) {
+			if (_pts1[i] != _pts2[i]) {
+				check = false;
+			}
+			else {
+				check = true;
+			}
+		}
+	}
+	
+	if (check == false) {
+		cout << "something's wrong!\n";
+	}
+}
+
 int main()
 try
 {
@@ -108,14 +140,11 @@ try
 	cout << "Processed pts: " << endl;
 	print_pts(processed_pts);
 
-	keep_window_open();
-
+	//compare_pt_vectors(original_pts, processed_pts);
 }
 catch (runtime_error e) {
 	cout << e.what() << endl;
-	keep_window_open();
 }
 catch (...) {
 	cout << "Exiting" << endl;
-	keep_window_open();
 }
