@@ -130,6 +130,7 @@
     <ClCompile Include="store_temps.cpp" />
     <ClCompile Include="drill10.cpp" />
     <ClCompile Include="drill11.cpp" />
+    <ClCompile Include="temp_stats.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

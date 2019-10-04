@@ -32,5 +32,8 @@
     <ClCompile Include="store_temps.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="temp_stats.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

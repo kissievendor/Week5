@@ -1,4 +1,4 @@
-/*Chapter 10 Exercise 2*/
+/*Chapter 10 Exercise 2
 #include "std_lib_facilities.h"
 
 struct Reading {
@@ -29,3 +29,4 @@ int main()
 		ost << '(' << temps[i].hour << ', '
 		<< temps[i].temperature << ")\n";
 }
+*/
